@@ -1,0 +1,53 @@
+global_frame: map
+robot_base_frame: base_link
+update_frequency: 2.0
+publish_frequency: 20.0
+static_map: false
+rolling_window: true
+
+first_map_only: false
+
+static_layer:
+  map_topic: "/rtabmap/proj_map"
+
+information_layer:
+  map_topic: "/ipp_custom/transformed_map"
+
+transformation_layer1:
+  map_topic: "/rtabmap/grid_prop_map"
+
+width: 50.0
+height: 50.0
+resolution: 0.05
+
+track_unknown_space: true
+raytrace_range: 3
+obstacle_range: 15
+
+# inflation_layer:
+#   cost_scaling_factor:  2  # exponential rate at which the obstacle cost drops off (default: 10)
+#   inflation_radius:     2  # max distance from an obstacle at which costs are incurred for planning paths
+
+inflation_layer:
+  cost_scaling_factor:  2  # exponential rate at which the obstacle cost drops off (default: 10)
+  inflation_radius:     2  # max distance from an obstacle at which costs are incurred for planning paths
+
+freespace_layer:
+  cost_scaling_factor:  2
+  inflation_radius:     2
+  inflate_unknown:      true
+
+# plugins:
+#   - {name: static_layer,                  type: "costmap_2d::StaticLayer"}
+#   # - {name: information_layer,           type: "costmap_2d::InformationLayer"}
+#   - {name: inflation_layer,           type: "costmap_2d::InflationLayer"}
+#   - {name: information_layer,           type: "costmap_2d::InformationLayer"}
+#   # - {name: transformation_layer1,           type: "costmap_2d::TransformationLayer1"} # Averaging.. not working as of now
+#   - {name: obstacle_layer,                 type: "costmap_2d::ObstacleLayer" }
+
+plugins:
+  - {name: static_layer,                  type: "costmap_2d::StaticLayer"}
+  - {name: inflation_layer,           type: "costmap_2d::InflationLayer"}
+  - {name: information_layer,           type: "costmap_2d::InformationLayer"}
+  # - {name: freespace_layer,           type: "costmap_2d::FreespaceLayer"}
+  - {name: obstacle_layer,                 type: "costmap_2d::ObstacleLayer" }

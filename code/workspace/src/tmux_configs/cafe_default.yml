@@ -1,0 +1,25 @@
+# /home/statordyna/.config/tmuxinator/cafe_default.yml
+
+name: cafe_default
+root: ~/workspace/
+
+windows:
+
+  - editor:
+      layout: tiled
+      panes:
+        - roslaunch robotino_simulations world.launch name:="cafe" gui:=false
+
+        - roslaunch --wait robotino_mpc robotino_mpc.launch 
+        - roslaunch --wait robotino_simulations rtabmap.launch delete:=-d
+        - roslaunch --wait active_slam active_node.launch
+        - roslaunch --wait robotino_camera_heading best_heading.launch 
+        - roslaunch --wait robotino_fsm one_map_fsm_default.launch kind:=2 only_last_set:=false pre_fix:=true mid_optimizer:=true weighted_avg:=true
+        
+        - rosrun ipp_custom default 
+        
+        # - rosrun robotino_simulations rtabmap_eval.py
+
+        # - python src/pause.py && ./back2.sh 'E2' 'C_gridmap' '<%= @settings["trial"] %>'
+        
+        - rviz -d src/tmux_configs/one_map.rviz

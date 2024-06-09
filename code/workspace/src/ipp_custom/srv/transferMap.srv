@@ -1,0 +1,4 @@
+int16[] entropy_map
+int16[] projection_map
+---
+int64[] costmap

@@ -1,0 +1,10 @@
+# Copy of GetPlan srv of nav_msgs
+geometry_msgs/PoseStamped start
+
+geometry_msgs/PoseStamped goal
+ 
+float32 tolerance
+
+int16[] costs_grid   # the addition in this case
+---
+nav_msgs/Path plan

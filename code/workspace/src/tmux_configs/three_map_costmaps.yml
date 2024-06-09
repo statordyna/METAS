@@ -1,0 +1,31 @@
+# /home/statordyna/.config/tmuxinator/three_map_costmap2D.yml
+
+name: three_map_costmaps
+root: ~/workspace/
+windows:
+  - editor:
+      layout: tiled
+      panes:
+        # - roslaunch robotino_simulations world.launch name:="cafe" gui:=true
+        - roslaunch robotino_simulations world.launch name:="small_house" x:=-2.0 gui:=true
+        
+        - roslaunch --wait robotino_mpc robotino_mpc.launch 
+        - roslaunch --wait ipp_custom rtabmap_three_planner.launch delete:=-d
+
+        - roslaunch --wait active_slam active_node.launch
+        - roslaunch --wait robotino_camera_heading best_heading.launch 
+        - roslaunch --wait robotino_fsm three_map_fsm.launch kind:=2 only_last_set:=false pre_fix:=true mid_optimizer:=true weighted_avg:=true path_selection_param:=0
+        
+        - rosrun ipp_custom transformation_transfer.py
+        - rosrun ipp_custom transformation_cinf move_base/global_costmap/costmap:=move_base_gridmap/global_costmap/costmap
+        - rosrun ipp_custom default move_base/global_costmap/costmap:=move_base_default/global_costmap/costmap
+
+        # - rosrun ipp_custom getPathLog.py
+
+        # - python src/pause.py && ./back.sh 'E1' 'baseline_costmap2d' '<%= @settings["trial"] %>'
+        # - python src/pause.py && ./backmaps.sh 'E2' 'T_C3PO' '<%= @settings["trial"] %>'
+        # - python src/pause.py && ./back.sh 'E1' 'augmented_grid_map' '<%= @settings["trial"] %>'
+        # - python src/pause.py && ./back.sh 'E1' 'grid_map' '<%= @settings["trial"] %>'
+        
+        # - rviz -d src/tmux_configs/two_map.rviz
+        # - rviz -d src/tmux_configs/two_map.rviz | rviz -d src/tmux_configs/tr.rviz | rviz -d src/tmux_configs/c2d.rviz

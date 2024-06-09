@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robotino_simulations</name>
+  <version>0.0.0</version>
+  <description>The robotino_simulations package</description>
+
+  <author email="elia.bonetto@tuebingen.mpg.de">Elia Bonetto</author>
+  <maintainer email="elia.bonetto@tuebingen.mpg.de">Elia Bonetto</maintainer>
+  <license>GPLv3</license>
+
+
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+  <depend>tf</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>gazebo_ros</depend>
+  <depend>cmake_modules</depend>
+  <depend>plotty</depend>
+  <depend>pcl_ros</depend>
+  <depend>glog_catkin</depend>
+  <depend>grid_map_ros</depend>
+  <depend>nodelet</depend>
+  <depend>laser_geometry</depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
