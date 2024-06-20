@@ -152,7 +152,7 @@ void METAS::Combine(){
         }
 
 //        if (inf>=0.95){
-        if (Grid_costmap.at("Obstacle_Map", *it) == -1)
+        if (Grid_Costmap.at("Obstacle_Map", *it) == -1){
             Grid_Costmap.at("Lethal_Cells", *it) = 1;
             Grid_Costmap.at("Ent_final", *it) = -1 ;
         }
