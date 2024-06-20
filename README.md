@@ -19,3 +19,9 @@ Other than the prerequites of iRotate, the following are required for METAS pack
 after following the installation steps of iRotate, and installing all prerequites, we can build the workspace using:
 
 ```catkin build -DRTABMAP_SYNC_USER_DATA=ON -DCMAKE_BUILD_TYPE=Release -j8```
+
+## Running the METAS package:
+
+The evaulation code is given in the METAS.pdf file. We provide tmuxinator config files, inside the ```tmux_config``` folder, to run all rosnode required together.
+
+Example: ```tmuxinator start cafe_transformation.yml```, will run the METAS package on café environment. Similarly ```tmuxinator start small_house_transformation.yml``` will run the METAS package on small_house environmnet.
